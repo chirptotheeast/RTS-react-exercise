@@ -8,7 +8,6 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.SEARCH_HISTORY:
-            console.log(action)
             return {
                 ...state,
                 userInput: [ ...state.userInput, action.userInput ],

@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import axios from "axios"
 import * as searchActions from '../store/actions/searchAction'
 
-
  
 export default function SearchBar(){
 

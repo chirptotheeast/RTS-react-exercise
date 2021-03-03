@@ -4,7 +4,6 @@ import { useSelector } from "react-redux"
 export default function Results(){
     const searchResults = useSelector((state) => state.results)
 
-
     return (
       <div>
         {searchResults?.map((hit, index) => (
