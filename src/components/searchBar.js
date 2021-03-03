@@ -1,48 +1,40 @@
-import React, { Component } from "react";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import axios from "axios"
+import * as searchActions from '../store/actions/searchAction'
 
-export default class searchBar extends Component {
-  state = {
-    user_input: "",
-    results: []
+
+ 
+export default function SearchBar(){
+
+    const dispatch = useDispatch()
+    const [userInput, setUserInput] = useState("")
+
+   const userInputHandler = (e) => {
+        setUserInput(e.target.value)
+    }
+
+     const submitHandler = (e) => {
+      e.preventDefault();
+    axios
+        .get(`http://hn.algolia.com/api/v1/search?query=${userInput}`)
+        .then((res) => {
+        dispatch(searchActions.searchHistory(userInput, res.data.hits));
+      });
   };
 
-  callApi = (e) => {
-      e.preventDefault()
-    fetch(`http://hn.algolia.com/api/v1/search?query=${this.state}`)
-      .then((res) => res.json())
-      .then((data) =>
-        //   data.hits.map((hit) => {
-        //     return (
-        //      <ul key={hit.title}>
-        //          <li>{hit.title}</li>
-        //      </ul>   
-        //     )
-        //   })
-          this.setState({results: data.hits})
-      );
-  };
-
-  render() {
-      console.log(this.state.results);
     return (
       <div>
-        <form onSubmit={this.callApi}>
+        <form onSubmit={submitHandler}>
           <input
             type="text"
             placeholder="Search Hacker News"
-            onChange={(e) => this.setState({ user_input: e.target.value })}
+            onChange={(e) => userInputHandler(e)}
           />
-          <input type="submit" value="Submit" />
+          <input type="submit" />
         </form>
-
-        {this.state.results.map((result, index) => {
-           return (
-             <ul>
-               <li key={`title-${index}`}>{result.title}</li>
-             </ul>
-           );
-        })}
       </div>
     );
   }
-}
+
+
