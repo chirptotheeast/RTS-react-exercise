@@ -3,7 +3,6 @@ import { useSelector } from "react-redux"
 
 export default function UserSearch() {
     const userSearch = useSelector((state) => state.userInput)
-    console.log(userSearch)
 
     return (
         <div>
