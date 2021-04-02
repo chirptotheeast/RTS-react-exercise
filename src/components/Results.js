@@ -6,8 +6,8 @@ export default function Results(){
 
     return (
       <div>
-        {searchResults?.map((hit, index) => (
-          <div key={index + 1}>
+        {searchResults?.map((hit, key) => (
+          <div key={key}>
             <ul>
               <a target="_blank" rel="noreferrer" href={hit.url}>
                 <li>{hit.title}</li>

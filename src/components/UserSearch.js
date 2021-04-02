@@ -6,8 +6,8 @@ export default function UserSearch() {
 
     return (
         <div>
-            {userSearch?.map((input) => (
-                <div key={input}>{input}</div>
+            {userSearch?.map((input, key) => (
+                <div key={key}>{input}</div>
             ))}
          
         </div>

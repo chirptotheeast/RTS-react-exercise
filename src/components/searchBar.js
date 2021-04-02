@@ -26,6 +26,7 @@ export default function SearchBar(){
       <div>
         <form onSubmit={submitHandler}>
           <input
+            value={userInput}
             type="text"
             placeholder="Search Hacker News"
             onChange={(e) => userInputHandler(e)}
